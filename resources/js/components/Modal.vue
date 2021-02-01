@@ -17,7 +17,7 @@
                         </div>
                         <div class="form-group"> <label for="balance">
                             <h6>Amount</h6>
-                            </label> <input type="text" v-model="balance" placeholder="amount" required class="form-control ">
+                            </label> <input type="number" v-model="balance" placeholder="amount" required class="form-control ">
                         </div>
                         <div class="form-group"> <label for="description">
                             <h6>Description</h6>

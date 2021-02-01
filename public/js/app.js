@@ -2130,6 +2130,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -20665,7 +20668,7 @@ var render = function() {
                     ],
                     staticClass: "form-control ",
                     attrs: {
-                      type: "text",
+                      type: "number",
                       placeholder: "amount",
                       required: ""
                     },
@@ -20951,7 +20954,15 @@ var render = function() {
               }),
               0
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.transactions.length == 0
+            ? _c("div", [
+                _vm._v(
+                  "\n                    There is no data to show.\n                "
+                )
+              ])
+            : _vm._e()
         ])
       ],
       1

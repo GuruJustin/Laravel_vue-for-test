@@ -27,6 +27,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <div v-if="transactions.length==0">
+                    There is no data to show.
+                </div>
             </div>
         </div>
     </div>
