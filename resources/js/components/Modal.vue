@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade in modal-active">
+    <div class="modal fade in modal-active" style="margin:auto; margin-top : 150px;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <button type="button" @click="$emit('close')" class="close"><span >&times;</span></button>
@@ -23,7 +23,7 @@
                             <h6>Description</h6>
                             </label> <input type="text" v-model="description"  required class="form-control ">
                         </div>
-                        <input @click="sendData()" value="Add">
+                        <input class = 'btn btn-primary' @click="sendData()" value="Add">
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -58,8 +58,8 @@ export default {
 
             axios.post('/api/saveData', data)
                 .then(response => {
-                    data.created_at = new Date();
-                    this.$emit('addNew', data);
+                    let newData = response.data;
+                    this.$emit('addNew', newData);
                     this.$emit('close');
             });
         }

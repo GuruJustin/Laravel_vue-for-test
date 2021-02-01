@@ -2072,9 +2072,9 @@ __webpack_require__.r(__webpack_exports__);
         'description': this.description
       };
       axios.post('/api/saveData', data).then(function (response) {
-        data.created_at = new Date();
+        var newData = response.data;
 
-        _this.$emit('addNew', data);
+        _this.$emit('addNew', newData);
 
         _this.$emit('close');
       });
@@ -20572,143 +20572,159 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "modal fade in modal-active" }, [
-    _c("div", { staticClass: "modal-dialog" }, [
-      _c("div", { staticClass: "modal-content" }, [
-        _c(
-          "button",
-          {
-            staticClass: "close",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                return _vm.$emit("close")
-              }
-            }
-          },
-          [_c("span", [_vm._v("×")])]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "container" }, [
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade in modal-active",
+      staticStyle: { margin: "auto", "margin-top": "150px" }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
           _c(
-            "form",
+            "button",
             {
-              staticClass: "form-validate is-alter",
-              attrs: { id: "credit-card-payment-form", method: "post" }
+              staticClass: "close",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.$emit("close")
+                }
+              }
             },
-            [
-              _c("div", { staticClass: "form-group" }, [
-                _vm._m(0),
+            [_c("span", [_vm._v("×")])]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "container" }, [
+            _c(
+              "form",
+              {
+                staticClass: "form-validate is-alter",
+                attrs: { id: "credit-card-payment-form", method: "post" }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.credit,
+                          expression: "credit"
+                        }
+                      ],
+                      staticClass: "form-control ",
+                      attrs: { required: "", id: "type" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.credit = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { name: "type", value: "credit" } },
+                        [_vm._v("credit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { name: "type", value: "debit" } },
+                        [_vm._v("debit")]
+                      )
+                    ]
+                  )
+                ]),
                 _vm._v(" "),
-                _c(
-                  "select",
-                  {
+                _c("div", { staticClass: "form-group" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.credit,
-                        expression: "credit"
+                        value: _vm.balance,
+                        expression: "balance"
                       }
                     ],
                     staticClass: "form-control ",
-                    attrs: { required: "", id: "type" },
+                    attrs: {
+                      type: "text",
+                      placeholder: "amount",
+                      required: ""
+                    },
+                    domProps: { value: _vm.balance },
                     on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.credit = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.balance = $event.target.value
                       }
                     }
-                  },
-                  [
-                    _c("option", { attrs: { name: "type", value: "credit" } }, [
-                      _vm._v("credit")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { name: "type", value: "debit" } }, [
-                      _vm._v("debit")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _vm._m(1),
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.description,
+                        expression: "description"
+                      }
+                    ],
+                    staticClass: "form-control ",
+                    attrs: { type: "text", required: "" },
+                    domProps: { value: _vm.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.description = $event.target.value
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
                 _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.balance,
-                      expression: "balance"
-                    }
-                  ],
-                  staticClass: "form-control ",
-                  attrs: { type: "text", placeholder: "amount", required: "" },
-                  domProps: { value: _vm.balance },
+                  staticClass: "btn btn-primary",
+                  attrs: { value: "Add" },
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.balance = $event.target.value
+                    click: function($event) {
+                      return _vm.sendData()
                     }
                   }
                 })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.description,
-                      expression: "description"
-                    }
-                  ],
-                  staticClass: "form-control ",
-                  attrs: { type: "text", required: "" },
-                  domProps: { value: _vm.description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.description = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                attrs: { value: "Add" },
-                on: {
-                  click: function($event) {
-                    return _vm.sendData()
-                  }
-                }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "modal-footer" })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" })
+        ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {

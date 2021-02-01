@@ -25,6 +25,6 @@ class TransactionController extends Controller
         $newTrans->balance += $request->balance;
         $newTrans->description = $request->description;
         $newTrans->save();
-        return back();
+        return json_encode($newTrans);
     }
 }
